@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Über mich | Personal Trainer</title>
+  <meta name="description" content="Arbeitsweise, Schwerpunkte und Philosophie." />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/about.css" />
+</head>
+
+<body>
+  <a class="skip" href="#content">Zum Inhalt springen</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Startseite">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text"><strong>[Name]</strong><span>Personal Trainer</span></span>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">Über mich</a>
+        <a href="services.html">Angebot</a>
+        <a href="contact.html">Kontakt</a>
+        <a class="btn small" href="contact.html#booking">Erstgespräch</a>
+      </nav>
+
+      <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <p class="kicker">Über mich</p>
+        <h1>Schlichtes Coaching, echte Resultate</h1>
+        <p class="lead muted">
+          Ich arbeite strukturiert: Assessment, Plan, Umsetzung, Review. Damit du Fortschritt siehst und dranbleibst.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid cards-2">
+        <article class="card">
+          <h2>Kurzprofil</h2>
+          <ul class="list">
+            <li><strong>Ort:</strong> [Ort]</li>
+            <li><strong>Sprachen:</strong> Deutsch / Englisch</li>
+            <li><strong>Ausbildung:</strong> [Zertifikate / Diplome]</li>
+            <li><strong>Schwerpunkte:</strong> Kraft, Mobility, Schmerzprävention</li>
+          </ul>
+          <p class="muted">Platzhalter ersetzen.</p>
+        </article>
+
+        <article class="card">
+          <h2>Arbeitsweise</h2>
+          <ol class="steps">
+            <li><strong>Assessment</strong><span class="muted">Ausgangslage und Ziel klären.</span></li>
+            <li><strong>Plan</strong><span class="muted">Einfach und umsetzbar.</span></li>
+            <li><strong>Training</strong><span class="muted">Technik, Progression, Routine.</span></li>
+            <li><strong>Review</strong><span class="muted">Nachschärfen, weiterbauen.</span></li>
+          </ol>
+          <a class="btn block" href="contact.html#booking">Erstgespräch anfragen</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <h2>Für wen es passt</h2>
+          <p>Wenn du Klarheit willst statt Chaos: hier bist du richtig.</p>
+        </div>
+
+        <div class="grid cards-3">
+          <article class="card">
+            <h3>Kraft aufbauen</h3>
+            <p class="muted">Mit Technik, Progression und messbaren Zielen.</p>
+          </article>
+          <article class="card">
+            <h3>Besser bewegen</h3>
+            <p class="muted">Stabilität, Mobility und Alltagstauglichkeit.</p>
+          </article>
+          <article class="card">
+            <h3>Abnehmen</h3>
+            <p class="muted">Ohne Extreme. Mit Struktur und Routine.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span class="muted">© <span id="year"></span> [Name]</span>
+      <span class="muted">
+        <a href="index.html">Home</a> ·
+        <a href="services.html">Angebot</a> ·
+        <a href="contact.html">Kontakt</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('[data-burger]');
+    const nav = document.querySelector('[data-nav]');
+    const header = document.querySelector('[data-header]');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function setNav(open){
+      burger.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('open', open);
+      document.body.classList.toggle('no-scroll', open);
+    }
+
+    burger.addEventListener('click', () => {
+      const isOpen = burger.getAttribute('aria-expanded') === 'true';
+      setNav(!isOpen);
+    });
+
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', (window.scrollY || 0) > 8);
+    });
+  </script>
+</body>
+</html>

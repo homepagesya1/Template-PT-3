@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt | Personal Trainer</title>
+  <meta name="description" content="Kontakt aufnehmen und Erstgespräch anfragen." />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/contact.css" />
+</head>
+
+<body>
+  <a class="skip" href="#content">Zum Inhalt springen</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Startseite">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text"><strong>[Name]</strong><span>Personal Trainer</span></span>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">Über mich</a>
+        <a href="services.html">Angebot</a>
+        <a href="contact.html" class="active">Kontakt</a>
+        <a class="btn small" href="#booking">Erstgespräch</a>
+      </nav>
+
+      <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <p class="kicker">Kontakt</p>
+        <h1>Erstgespräch anfragen</h1>
+        <p class="lead muted">Wähle einen Tag im Kalender und schick mir kurz deine Ausgangslage.</p>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container grid three">
+        <!-- LEFT: Info -->
+        <div class="card">
+          <h2>Kontaktdaten</h2>
+          <p class="muted">
+            <strong>E-Mail:</strong> <a href="mailto:hello@example.com">hello@example.com</a><br />
+            <strong>Telefon:</strong> <a href="tel:+41000000000">+41 00 000 00 00</a><br />
+            <strong>Ort:</strong> [Ort]
+          </p>
+
+          <div class="note">
+            <strong>Hinweis</strong>
+            <p class="muted">
+              Der Kalender ist ein Entwurf. Du kannst später echte Slots per Google Calendar Embed oder API anbinden.
+            </p>
+          </div>
+
+          <div class="selected-box" aria-live="polite">
+            <div class="selected-title">Ausgewählt</div>
+            <div class="selected-value" id="selectedDateText">Noch kein Datum ausgewählt</div>
+            <div class="muted small" id="selectedHint">Wähle zuerst einen Tag rechts im Kalender.</div>
+          </div>
+        </div>
+
+        <!-- MIDDLE: Calendar -->
+        <div class="card calendar" aria-label="Kalender">
+          <div class="cal-head">
+            <button class="cal-nav" type="button" id="prevMonth" aria-label="Vorheriger Monat">‹</button>
+            <div class="cal-title">
+              <div class="cal-month" id="calMonth">Monat</div>
+              <div class="muted small" id="calYear">Jahr</div>
+            </div>
+            <button class="cal-nav" type="button" id="nextMonth" aria-label="Nächster Monat">›</button>
+          </div>
+
+          <div class="cal-weekdays" aria-hidden="true">
+            <div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
+          </div>
+
+          <div class="cal-grid" id="calGrid" role="grid" aria-label="Tage"></div>
+
+          <div class="cal-legend">
+            <span class="pill available">Verfügbar</span>
+            <span class="pill limited">Wenig Slots</span>
+            <span class="pill closed">Nicht verfügbar</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <form class="card form" id="contactForm" novalidate>
+          <h2>Formular</h2>
+
+          <input type="hidden" name="date" id="selectedDateInput" value="" />
+
+          <div class="row">
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label>
+              E-Mail
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Paket (optional)
+              <select name="package">
+                <option value="">Auswählen</option>
+                <option value="Start">Start</option>
+                <option value="Progress">Progress</option>
+                <option value="Transformation">Transformation</option>
+                <option value="Individuell">Individuell</option>
+              </select>
+            </label>
+
+            <label>
+              Ziel
+              <select name="goal" required>
+                <option value="">Auswählen</option>
+                <option value="Kraftaufbau">Kraftaufbau</option>
+                <option value="Abnehmen">Abnehmen</option>
+                <option value="Schmerzfrei bewegen">Schmerzfrei bewegen</option>
+                <option value="Ausdauer">Ausdauer</option>
+                <option value="Allgemeine Fitness">Allgemeine Fitness</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            Kurzbeschreibung
+            <textarea name="message" rows="5" required placeholder="Aktueller Stand, Ziel, Zeitbudget, Verletzungen/Infos..."></textarea>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" name="consent" required />
+            <span>Ich bin einverstanden, dass meine Angaben zur Kontaktaufnahme verwendet werden.</span>
+          </label>
+
+          <button class="btn block" type="submit">Anfrage senden</button>
+          <p class="muted small" id="formHint" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span class="muted">© <span id="year"></span> [Name]</span>
+      <span class="muted">
+        <a href="index.html">Home</a> ·
+        <a href="services.html">Angebot</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Header / Mobile Nav
+    const burger = document.querySelector('[data-burger]');
+    const nav = document.querySelector('[data-nav]');
+    const header = document.querySelector('[data-header]');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function setNav(open){
+      burger.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('open', open);
+      document.body.classList.toggle('no-scroll', open);
+    }
+    burger.addEventListener('click', () => {
+      const isOpen = burger.getAttribute('aria-expanded') === 'true';
+      setNav(!isOpen);
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', (window.scrollY || 0) > 8));
+
+    // Paket aus URL übernehmen: ?package=Progress
+    const url = new URL(window.location.href);
+    const pkg = url.searchParams.get('package');
+    const form = document.getElementById('contactForm');
+    const hint = document.getElementById('formHint');
+    if (pkg){
+      const select = form.querySelector('select[name="package"]');
+      const option = [...select.options].find(o => o.value.toLowerCase() === pkg.toLowerCase());
+      if (option) select.value = option.value;
+    }
+
+    // Kalender (Entwurf)
+    const calMonthEl = document.getElementById('calMonth');
+    const calYearEl = document.getElementById('calYear');
+    const calGrid = document.getElementById('calGrid');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+
+    const selectedDateText = document.getElementById('selectedDateText');
+    const selectedDateInput = document.getElementById('selectedDateInput');
+    const selectedHint = document.getElementById('selectedHint');
+
+    // Demo-Verfügbarkeiten: ISO-String -> status
+    // status: "available" | "limited" | "closed"
+    // Du kannst das später durch echte Daten ersetzen.
+    const availability = {
+      // Beispiel-Pattern: ein paar Tage im aktuellen/folgenden Monat
+      // wird beim Rendern ergänzt, falls leer
+    };
+
+    const monthNames = [
+      'Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'
+    ];
+
+    let view = new Date();
+    view.setDate(1);
+
+    let selectedISO = '';
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function toISO(d){
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    }
+
+    function weekdayMondayFirst(jsDay){
+      // JS: 0=So..6=Sa -> Mo=0..So=6
+      return (jsDay + 6) % 7;
+    }
+
+    function ensureDemoAvailabilityForMonth(year, monthIndex){
+      // Wenn keine Daten vorhanden sind, legen wir Demo-Status an:
+      // Mo-Fr meistens verfügbar, einzelne Tage "limited", Wochenenden "closed"
+      const daysInMonth = new Date(year, monthIndex+1, 0).getDate();
+
+      for (let day=1; day<=daysInMonth; day++){
+        const d = new Date(year, monthIndex, day);
+        const iso = toISO(d);
+        if (availability[iso]) continue;
+
+        const jsDay = d.getDay(); // 0 So ... 6 Sa
+        if (jsDay === 0 || jsDay === 6){
+          availability[iso] = 'closed';
+        } else if (day % 7 === 0 || day % 11 === 0){
+          availability[iso] = 'limited';
+        } else {
+          availability[iso] = 'available';
+        }
+      }
+    }
+
+    function renderCalendar(){
+      const y = view.getFullYear();
+      const m = view.getMonth();
+
+      ensureDemoAvailabilityForMonth(y, m);
+
+      calMonthEl.textContent = monthNames[m];
+      calYearEl.textContent = String(y);
+
+      calGrid.innerHTML = '';
+
+      const first = new Date(y, m, 1);
+      const offset = weekdayMondayFirst(first.getDay());
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+
+      // leading blanks
+      for (let i=0; i<offset; i++){
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell empty';
+        calGrid.appendChild(cell);
+      }
+
+      // days
+      const todayISO = toISO(new Date());
+
+      for (let day=1; day<=daysInMonth; day++){
+        const d = new Date(y, m, day);
+        const iso = toISO(d);
+        const status = availability[iso] || 'available';
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-cell day ' + status;
+        btn.setAttribute('role','gridcell');
+
+        btn.innerHTML = `
+          <span class="day-num">${day}</span>
+          <span class="day-dot" aria-hidden="true"></span>
+        `;
+
+        if (iso === todayISO) btn.classList.add('today');
+        if (iso === selectedISO) btn.classList.add('selected');
+
+        if (status === 'closed'){
+          btn.disabled = true;
+          btn.setAttribute('aria-disabled','true');
+          btn.title = 'Nicht verfügbar';
+        } else if (status === 'limited'){
+          btn.title = 'Wenig Slots';
+        } else {
+          btn.title = 'Verfügbar';
+        }
+
+        btn.addEventListener('click', () => {
+          selectedISO = iso;
+          selectedDateInput.value = iso;
+
+          const pretty = d.toLocaleDateString('de-CH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+          selectedDateText.textContent = pretty;
+          selectedHint.textContent = 'Datum wird in der Anfrage mitgesendet.';
+
+          renderCalendar(); // update selected state
+        });
+
+        calGrid.appendChild(btn);
+      }
+    }
+
+    prevMonthBtn.addEventListener('click', () => {
+      view.setMonth(view.getMonth() - 1);
+      renderCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+      view.setMonth(view.getMonth() + 1);
+      renderCalendar();
+    });
+
+    renderCalendar();
+
+    // Formular
+    function setError(el, on){ el.classList.toggle('invalid', on); }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hint.textContent = '';
+
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const goal = String(data.get('goal') || '').trim();
+      const msg = String(data.get('message') || '').trim();
+      const consent = data.get('consent') === 'on';
+      const date = String(data.get('date') || '').trim();
+
+      const nameEl = form.querySelector('input[name="name"]');
+      const mailEl = form.querySelector('input[name="email"]');
+      const goalEl = form.querySelector('select[name="goal"]');
+      const msgEl = form.querySelector('textarea[name="message"]');
+
+      setError(nameEl, !name);
+      setError(mailEl, !email || !email.includes('@'));
+      setError(goalEl, !goal);
+      setError(msgEl, msg.length < 10);
+
+      if (!consent){
+        hint.textContent = 'Bitte bestätige die Einwilligung.';
+        return;
+      }
+      if (!name || !email || !email.includes('@') || !goal || msg.length < 10){
+        hint.textContent = 'Bitte prüfe die markierten Felder.';
+        return;
+      }
+      if (!date){
+        hint.textContent = 'Bitte wähle im Kalender ein Datum.';
+        return;
+      }
+
+      const pack = String(data.get('package') || '').trim() || '—';
+
+      const subject = encodeURIComponent('Erstgespräch Anfrage: ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'E-Mail: ' + email + '\n' +
+        'Datumwunsch: ' + date + '\n' +
+        'Paket: ' + pack + '\n' +
+        'Ziel: ' + goal + '\n\n' +
+        msg + '\n'
+      );
+
+      hint.textContent = 'Sieht gut aus. Ich öffne jetzt dein Mailprogramm mit einer vorbefüllten Anfrage.';
+      window.location.href = 'mailto:hello@example.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
